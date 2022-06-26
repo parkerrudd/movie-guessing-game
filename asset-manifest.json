@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/github.io/movie-guessing-game/static/css/main.2fa4a27c.css",
-    "main.js": "/github.io/movie-guessing-game/static/js/main.d3f2df76.js",
-    "static/js/787.9b1d8cba.chunk.js": "/github.io/movie-guessing-game/static/js/787.9b1d8cba.chunk.js",
-    "index.html": "/github.io/movie-guessing-game/index.html",
-    "main.2fa4a27c.css.map": "/github.io/movie-guessing-game/static/css/main.2fa4a27c.css.map",
-    "main.d3f2df76.js.map": "/github.io/movie-guessing-game/static/js/main.d3f2df76.js.map",
-    "787.9b1d8cba.chunk.js.map": "/github.io/movie-guessing-game/static/js/787.9b1d8cba.chunk.js.map"
+    "main.css": "/movie-guessing-game/static/css/main.2fa4a27c.css",
+    "main.js": "/movie-guessing-game/static/js/main.cbf15e39.js",
+    "static/js/787.9b1d8cba.chunk.js": "/movie-guessing-game/static/js/787.9b1d8cba.chunk.js",
+    "index.html": "/movie-guessing-game/index.html",
+    "main.2fa4a27c.css.map": "/movie-guessing-game/static/css/main.2fa4a27c.css.map",
+    "main.cbf15e39.js.map": "/movie-guessing-game/static/js/main.cbf15e39.js.map",
+    "787.9b1d8cba.chunk.js.map": "/movie-guessing-game/static/js/787.9b1d8cba.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.2fa4a27c.css",
-    "static/js/main.d3f2df76.js"
+    "static/js/main.cbf15e39.js"
   ]
 }
