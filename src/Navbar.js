@@ -14,6 +14,10 @@ export default function Navbar(props) {
     const [bestPicture, setBestPicture] = useState(false)
     const [comedies, setComedies] = useState(false)
 
+    const toggleSwitch = (id) => {
+        
+    }
+
 
     return (
         <div className="navbar-container">

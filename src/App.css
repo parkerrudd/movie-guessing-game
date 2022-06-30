@@ -107,13 +107,13 @@ nav li {
 @media screen and (max-width: 650px) {
     .instructions-container {
         width: 70vw;
-        height: 70vh;
+        height: 50vh;
         font-size: .8em;
     }
 
     .settings-container {
         width: 80vw;
-        height: 70vh;
+        height: 50vh;
         font-size: .8em;
     }
 }
@@ -285,6 +285,10 @@ nav li {
     background: #e8cac9; 
 }
 
+.table-section {
+    width:100vw;
+}
+
 .table {
     display: flex;
     flex-direction: column;
@@ -297,7 +301,6 @@ nav li {
     max-width: 80vw;
     display: flex;
     justify-content: center;   
-    /* gap: 8vw; */
     font-size: 1.2em;
     border-bottom: 3px solid #2E282A;
     border-top: 3px solid #2E282A;
@@ -310,7 +313,7 @@ th, td {
     border-left: 1.5px solid #2E282A;
     border-right: 1.5px solid #2E282A;
     font-size: 1em;
-    padding: 1vw;
+    padding: 1.5vw;
 }
 
 td {
@@ -331,6 +334,7 @@ td {
 @media screen and (max-width: 700px) {
     #headers {
         font-size: 1em;
+        /* max-width: 95vw; */
     }
 
     th, td {
@@ -359,10 +363,6 @@ td {
         padding: .7em;
     }
 
-    #headers {
-        font-size: .8em;
-    }
-
     th, td {
         font-size: .6em;
     }
@@ -375,10 +375,6 @@ td {
     justify-content: center;    
     border-bottom: 2px solid #2E282A;
     color: #f9e1e0;
-}
-
-@media screen and (max-width: 800px) {
-  
 }
 
 .win-page {

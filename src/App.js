@@ -88,10 +88,6 @@ function App() {
     const [searchField, setSearchField] = useState(false); 
  
     //GET MOVIE GUESS AND SET ID
-    const getInputValue = (event) => {
-        setMovie(event.target.value); 
-    }; 
-
     const movieQuery = () => {
       const axios = require('axios');
 
@@ -110,6 +106,7 @@ function App() {
       .catch((error) => {
         console.log(error);
       }); 
+      setMovie('')
     }; 
 
     const [correctYear, setCorrectYear] = useState(""); 
@@ -223,7 +220,7 @@ function App() {
         
             <div>
                 <div className="search-container">
-                    <input id="search-input" onChange={getInputValue} className="actors-searchbar" autoComplete="list" type="text" list="search-suggestions" placeholder="Search Movies..." required/>
+                    <input id="search-input" onChange={(e) => setMovie(e.target.value)} className="actors-searchbar" autoComplete="list" type="text" list="search-suggestions" placeholder="Search Movies..." required/>
                     <button onClick={() => {movieQuery(); setSearchField(true)}} className="actor-search-btn">Guess</button>
                 </div>
 
