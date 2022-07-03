@@ -6,5 +6,9 @@ POST http://localhost:3004/settings/new
 Content-Type: application/json
 
 {
-    "text": "Super Hero Movies"
+    "text": "Comedies"
 }
+
+###
+
+DELETE http://localhost:3004/settings/delete/62bd1ee90d86a778c1feafc3

@@ -75,7 +75,7 @@ nav li {
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    z-index: 1;
+    z-index: 2;
     width: 30vw;
     height: 60vh;
     background-color: #e8cac9;
@@ -90,6 +90,21 @@ nav li {
     gap: 1em;
     padding-left: 2em;
     padding-right: 2em;
+}
+
+.switches {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 1em;
+}
+
+.toggles {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
 }
 
 @media screen and (max-width: 1000px) {
@@ -139,12 +154,6 @@ nav li {
 #toggle-off {
     text-decoration: none;
     color: black;
-    font-size: 1.5em;
-}
-
-#toggle-on {
-    text-decoration: none;
-    color: green;
     font-size: 1.5em;
 }
 
@@ -314,6 +323,7 @@ th, td {
     border-right: 1.5px solid #2E282A;
     font-size: 1em;
     padding: 1.5vw;
+    /* z-index: 3; */
 }
 
 td {

@@ -10,11 +10,31 @@ import SciFi from './SciFi.json';
 import BestPicture from './BestPictures.json'; 
 import Comedies from './Comedies.json'; 
 
+const API_BASE = "http://localhost:3004"
 
 function App() {
   const [current, setCurrent] = useState();
   const [guessCount, setGuessCount] = useState(0); 
-  
+  const [beginningMovie, setBeginningMovie] = useState([])
+  useEffect(() => {
+    GetBeginningMovie()
+
+  }, [])
+
+  const GetBeginningMovie = () => {
+    fetch(API_BASE + "/settings")
+    .then(res => res.json())
+    .then(data => setBeginningMovie(data))
+    .catch(err => console.error('Error:', err))
+  }
+
+  useEffect(() => {
+    beginningMovie.map(x => {
+      if (x.toggled === true) {
+        setStartingMovie(x.text)
+      }
+    })
+  }, [beginningMovie]) 
 
   const [correctTitle, setCorrectTitle] = useState(""); 
   const [correctID, setCorrectID] = useState(""); 
@@ -30,17 +50,17 @@ function App() {
 
   localStorage.setItem('startingMovie', startingMovie)
 
-  if (startingMovie === 'superHeroMovies') {
+  if (startingMovie === 'Super Hero Movies') {
     firstMovie = SuperHeroMovies.movies
   }
-  if (startingMovie === 'scifiMovies') {
+  if (startingMovie === 'Scifi Movies') {
     firstMovie = SciFi.movies
   }
-  if (startingMovie === 'bestPicture') {
+  if (startingMovie === 'Best Pictures (Oscars)') {
     firstMovie = BestPicture.movies
   }
 
-  if (startingMovie === 'comedies') {
+  if (startingMovie === 'Comedies') {
     firstMovie = Comedies.movies
   }
 

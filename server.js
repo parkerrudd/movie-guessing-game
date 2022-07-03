@@ -44,4 +44,10 @@ app.put('/settings/toggle/:id', async (req, res) => {
     res.json(toggle)
 })
 
+app.delete('/settings/delete/:id', async (req, res) => {
+    const result = await Settings.findByIdAndDelete(req.params.id)
+
+    res.json(result)
+})
+
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
