@@ -7,13 +7,13 @@ const API_BASE = "http://localhost:3004"
 
 function Statistics(props) {
 
-    const [gamesPlayed, setGamesPlayed] = useState()
-    const [gamesWon, setGamesWon] = useState()
-    const [percentage, setPercentage] = useState()
+    const [gamesPlayed, setGamesPlayed] = useState(0)
+    const [gamesWon, setGamesWon] = useState(0)
+    const [percentage, setPercentage] = useState(0)
     const navigate = useNavigate()
 
     const populateStats = async () => {
-        const req = await fetch(API_BASE + '/win', {
+        const req = await fetch(API_BASE + '/statistics', {
             headers: {
                 'x-access-token': localStorage.getItem('token')
             }

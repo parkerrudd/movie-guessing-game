@@ -13,7 +13,7 @@ function WinPage(props) {
     const posterUrl = `https://image.tmdb.org/t/p/original/${props.moviePoster}`; 
 
     const populateStats = async () => {
-        const req = await fetch(API_BASE + '/win', {
+        const req = await fetch(API_BASE + '/statistics', {
             headers: {
                 'x-access-token': localStorage.getItem('token')
             }

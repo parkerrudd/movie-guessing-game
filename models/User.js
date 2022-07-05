@@ -22,6 +22,22 @@ const UserSchema = new Schema(
         gamesWon: {
             type: Number, 
             default: 0
+        }, 
+        superHero: {
+            type: Boolean, 
+            default: false
+        }, 
+        scifi: {
+            type: Boolean, 
+            default: false
+        },
+        comedies: {
+            type: Boolean, 
+            default: false
+        }, 
+        bestPictures: {
+            type: Boolean, 
+            default: false
         }
     }
 )
