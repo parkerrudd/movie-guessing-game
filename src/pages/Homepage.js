@@ -9,7 +9,6 @@ import SuperHeroMovies from '../json/SuperHeroMovies.json';
 import SciFi from '../json/SciFi.json'; 
 import BestPicture from '../json/BestPictures.json'; 
 import Comedies from '../json/Comedies.json'; 
-import { json } from "express";
 import { Jwt } from "jsonwebtoken";
 
 const API_BASE = "http://localhost:3004"
@@ -137,7 +136,7 @@ function Homepage() {
         setMoviePoster(response.data.poster_path)
       })
       .catch((error) => {
-      console.log(error);
+      // console.log(error);
       });
 
     }, [correctID])
@@ -202,11 +201,22 @@ function Homepage() {
     })
   }
 
+  const addGame = async () => {
+    const req = await fetch(API_BASE + '/game', {
+      method: 'POST', 
+      headers: {
+          'Content-Type': 'application/json', 
+          'x-access-token': localStorage.getItem('token')
+      }
+    })
+  }
+
   useEffect(() => {
     if (correctID === guessMovieID && guessCount > 0) {
     setWinPage(true);
 
     addWin()
+    addGame()
   }
   }, [guessMovieID])
 
@@ -220,6 +230,7 @@ function Homepage() {
 
   useEffect(() => {
     if (guessCount === 8) {
+      addGame()
       setWinPage(true)
     }
   }, [guessCount])

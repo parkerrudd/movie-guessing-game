@@ -94,7 +94,24 @@ app.post('/login', async (req, res) => {
     }
 })
 
+app.post('/game', async (req, res) => {
+    const token = req.headers['x-access-token']
 
+    try {
+        const decoded = jwt.verify(token, 'secret1427')
+        const email = decoded.email
+        const user = await User.findOne({ email: email })
+        await User.updateOne(
+            { email: email }, 
+            { $set: { gamesPlayed: user.gamesPlayed + 1 }}
+            )
+
+        return res.json({ status: 'ok' })
+    } catch (error) {
+        console.log(error)
+        res.json({ status: 'error', error: 'invalid token' })
+    }
+})
 
 
 app.post('/win', async (req, res) => {
@@ -103,29 +120,33 @@ app.post('/win', async (req, res) => {
     try {
         const decoded = jwt.verify(token, 'secret1427')
         const email = decoded.email
-        const user = User.updateOne(
+        const user = await User.findOne({ email: email })
+        await User.updateOne(
             { email: email }, 
-            { $set: { gamesWon: gamesWon++ }}
+            { $set: { gamesWon: user.gamesWon + 1 }}
             )
 
-        return res.json({ status: 'ok', gamesWon: user.gamesWon ++ })
+        return res.json({ status: 'ok' })
     } catch (error) {
         console.log(error)
         res.json({ status: 'error', error: 'invalid token' })
     }
 })
 
-// app.get('/win', async (req, res) => {
-//     const token = req.headers['x-access-token']
+app.get('/win', async (req, res) => {
+    const token = req.headers['x-access-token']
 
-//     try {
-//         const decoded = jwt.verify(token, 'secret1427')
-//         const email = decoded.email
-//         const user = User.findOne({ email: email })
-//     } catch {
+    try {
+        const decoded = jwt.verify(token, 'secret1427')
+        const email = decoded.email
+        const user = await User.findOne({ email: email })
 
-//     }
-// })
+        return res.json({ status: 'ok', gamesPlayed: user.gamesPlayed, gamesWon: user.gamesWon })
+    } catch(error) {
+        console.log(error)
+		res.json({ status: 'error', error: 'invalid token' })
+    }
+})
 
 
 

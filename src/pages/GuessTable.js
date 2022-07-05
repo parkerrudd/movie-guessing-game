@@ -129,7 +129,7 @@ function GuessTable(props) {
             }
         })
         .catch((error) => {
-        console.log(error);
+        // console.log(error);
         });
 
     }, [props.movieID])

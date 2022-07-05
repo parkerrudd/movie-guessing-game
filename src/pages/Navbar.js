@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import '../App.css'; 
 import { useState } from "react";
-import { FaQuestionCircle, FaCog, FaToggleOn, FaToggleOff, FaWindowClose } from 'react-icons/fa'; 
+import { FaQuestionCircle, FaCog, FaToggleOn, FaToggleOff, FaWindowClose, FaChartBar } from 'react-icons/fa'; 
 import Instructions from "./Instructions";
+import Statistics from "./Statistics";
 
 const API_BASE = "http://localhost:3004"
 
@@ -11,11 +12,8 @@ export default function Navbar(props) {
 
     const [questionMark, setQuestionMark] = useState(false)
     const [settings, setSettings] = useState(false)
-    const [superToggle, setSuperToggle] = useState(false)
-    const [scifiToggle, setScifiToggle] = useState(false)
-    const [bestPicture, setBestPicture] = useState(false)
-    const [comedies, setComedies] = useState(false)
     const [switches, setSwitches] = useState([])
+    const [chart, setChart] = useState(false)
 
     useEffect(() => {
         GetSettings()
@@ -59,8 +57,15 @@ export default function Navbar(props) {
                             <FaCog />
                         </a>
                     </li>
+                    <li id="stats">
+                        <a href="#" className="anchors" onClick={() => setChart(!chart)}>
+                            <FaChartBar />
+                        </a>
+                    </li>
                 </ul>
             </nav>
+        
+        { chart ? <Statistics toggleStatistics={chart => setChart(chart)} /> : null }
 
         { questionMark ? <Instructions toggleQuestionMark={questionMark => setQuestionMark(questionMark)}/> : null }
         
@@ -81,32 +86,6 @@ export default function Navbar(props) {
                         </div>
                     ))}
                     </div>
-                    
-                    {/*<div className="supers">
-                        <h3>Super Hero Movies Only</h3>
-                        <a id="toggle-off" className="toggle-super" href="#" onClick={() => {setSuperToggle(!superToggle); props.updateStartingMovie('superHeroMovies')}}>
-                            { superToggle ? <FaToggleOn /> : <FaToggleOff /> }
-                        </a>
-                    </div>
-
-                   <div className="scifi-container">
-                        <h3>SciFi Movies Only</h3>
-                        <a id="scifi-toggle" className="scifi" href="#" onClick={() => {setScifiToggle(!scifiToggle); props.updateStartingMovie('scifiMovies')}}>
-                            { scifiToggle ? <FaToggleOn /> : <FaToggleOff /> }
-                        </a>
-                    </div>
-                    <div className="best-pic-container">
-                        <h3>Best Pictures (Oscars) Only</h3>
-                        <a id="best-pic-toggle" className="best-pic" href="#" onClick={() => {setBestPicture(!bestPicture); props.updateStartingMovie('bestPicture')}}>
-                            { bestPicture ? <FaToggleOn /> : <FaToggleOff /> }
-                        </a>
-                    </div>
-                    <div className="comedies-container">
-                        <h3>Comedies Only</h3>
-                        <a id="comedies-toggle" className="comedies" href="#" onClick={() => {setComedies(!comedies); props.updateStartingMovie('comedies')}}>
-                            { comedies ? <FaToggleOn /> : <FaToggleOff /> }
-                        </a>
-                    </div>*/}
                 </div>
             : null
            } 
