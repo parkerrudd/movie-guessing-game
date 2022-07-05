@@ -408,12 +408,21 @@ td {
     border-radius: 20px;
     display: flex;
     flex-direction: column;
-    gap: 4vh;
+    gap: 2vh;
     justify-content: center;
     align-items: center;
     box-shadow: 5px 5px 15px 1px rgba(0,0,0,0.7);
     color: #2E282A;
     animation: modalFadeIn .7s ease-in;
+}
+
+.win-page-stats {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
+    text-align: center;
+    max-width: 100%;
 }
 
 .stats-container {
