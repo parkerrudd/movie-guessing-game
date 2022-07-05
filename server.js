@@ -4,6 +4,7 @@ const cors = require('cors')
 const Settings = require('./models/Settings')
 const User = require('./models/User')
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 const PORT = 3004
 
 const app = express()
@@ -73,6 +74,58 @@ app.get('/register', async (req, res) => {
 
     res.json(users)
 })
+
+app.post('/login', async (req, res) => {
+    const user = await User.findOne({
+        email: req.body.email
+    })
+
+    const isPasswordValid = await bcrypt.compare(req.body.password, user.password)
+
+    if (isPasswordValid) {
+        const token = jwt.sign({
+            name: user.name,
+            email: user.email
+        }, 'secret1427')
+
+        return res.json({ status: 'ok', user: token })
+    } else {
+        return res.json({ status: 'error', user: false })
+    }
+})
+
+
+
+
+app.post('/win', async (req, res) => {
+    const token = req.headers['x-access-token']
+
+    try {
+        const decoded = jwt.verify(token, 'secret1427')
+        const email = decoded.email
+        const user = User.updateOne(
+            { email: email }, 
+            { $set: { gamesWon: gamesWon++ }}
+            )
+
+        return res.json({ status: 'ok', gamesWon: user.gamesWon ++ })
+    } catch (error) {
+        console.log(error)
+        res.json({ status: 'error', error: 'invalid token' })
+    }
+})
+
+// app.get('/win', async (req, res) => {
+//     const token = req.headers['x-access-token']
+
+//     try {
+//         const decoded = jwt.verify(token, 'secret1427')
+//         const email = decoded.email
+//         const user = User.findOne({ email: email })
+//     } catch {
+
+//     }
+// })
 
 
 

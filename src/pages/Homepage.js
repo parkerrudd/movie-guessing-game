@@ -9,6 +9,8 @@ import SuperHeroMovies from '../json/SuperHeroMovies.json';
 import SciFi from '../json/SciFi.json'; 
 import BestPicture from '../json/BestPictures.json'; 
 import Comedies from '../json/Comedies.json'; 
+import { json } from "express";
+import { Jwt } from "jsonwebtoken";
 
 const API_BASE = "http://localhost:3004"
 
@@ -65,7 +67,6 @@ function Homepage() {
   }
 
   useEffect(() => {
-    console.log(startingMovie)
     day = (Math.floor(Math.random() * firstMovie.length))
     var axios = require('axios');
     var config = {
@@ -171,7 +172,7 @@ function Homepage() {
           
       })
       .catch((error) => {
-      console.log(error);
+    //   console.log(error);
       });
 
   }, [correctID]); 
@@ -191,9 +192,21 @@ function Homepage() {
   
   }, [])
 
+  const addWin = async () => {
+    const req = await fetch(API_BASE + '/win', {
+        method: 'POST', 
+        headers: {
+            'Content-Type': 'application/json', 
+            'x-access-token': localStorage.getItem('token')
+        }
+    })
+  }
+
   useEffect(() => {
     if (correctID === guessMovieID && guessCount > 0) {
     setWinPage(true);
+
+    addWin()
   }
   }, [guessMovieID])
 
