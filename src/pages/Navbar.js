@@ -12,36 +12,118 @@ export default function Navbar(props) {
 
     const [questionMark, setQuestionMark] = useState(false)
     const [settings, setSettings] = useState(false)
-    const [switches, setSwitches] = useState([])
     const [chart, setChart] = useState(false)
+    const [superHero, setSuperHero] = useState(false)
+    const [scifi, setScifi] = useState(false)
+    const [comedies, setComedies] = useState(false)
+    const [bestPictures, setBestPictures] = useState(false)
 
     useEffect(() => {
-        GetSettings()
-
-        console.log(switches)
+        getUserInfo()
     }, [])
 
-    const GetSettings = () => {
-        fetch(API_BASE + "/settings")
-        .then(res => res.json())
-        .then(data => setSwitches(data))
-        .catch(err => console.error('Error:', err))
-    }
-
-    const toggleSwitch = async (id) => {
-        const data = await fetch(API_BASE + "/settings/toggle/" + id, {
-            method: "PUT"
-        }).then(res => res.json())
-
-        setSwitches(switches => switches.map(x => {
-            if (x._id === data._id) {
-                x.toggled = data.toggled
+    const getUserInfo = async () => {
+        const req = await fetch(API_BASE + '/statistics', {
+            headers: {
+                'x-access-token': localStorage.getItem('token')
             }
+        })
 
-            return x
-        }))
+        const data = await req.json()
+        if (data.status === 'ok') {
+            if (data.superHero === true) {
+                setSuperHero(true)
+                props.updateStartingMovie('Super Hero Movies')
+            } else {
+                setSuperHero(false)
+            }
+            if (data.scifi === true) {
+                setScifi(true)
+                props.updateStartingMovie('Scifi Movies')
+            } else {
+                setScifi(false)
+            }
+            if (data.comedies === true) {
+                setComedies(true)
+                props.updateStartingMovie('Comedies')
+            } else {
+                setComedies(false)
+            } 
+            if (data.bestPictures === true) {
+                setBestPictures(true)
+                props.updateStartingMovie('Best Pictures (Oscars)')
+            } else {
+                setBestPictures(false)
+            }
+        } else {
+            alert(data.error)
+        }
     }
 
+    const toggleSuperHero = async () => {
+        const req = await fetch(API_BASE + '/settings/superHero', {
+            method: 'POST', 
+            headers: {
+                'x-access-token': localStorage.getItem('token')
+            }
+        })
+
+        const data = await req.json()
+        if (data.status === 'ok') {
+            getUserInfo()
+        } else {
+            alert(data.error)
+        }
+        return data
+    }
+
+    const toggleScifi = async () => {
+        const req = await fetch(API_BASE + '/settings/scifi', {
+            method: 'POST', 
+            headers: {
+                'x-access-token': localStorage.getItem('token')
+            }
+        })
+
+        const data = await req.json()
+        if (data.status === 'ok') {
+            getUserInfo()
+        } else {
+            alert(data.error)
+        }
+    }
+
+    const toggleComedies = async () => {
+        const req = await fetch(API_BASE + '/settings/comedies', {
+            method: 'POST', 
+            headers: {
+                'x-access-token': localStorage.getItem('token')
+            }
+        })
+
+        const data = await req.json()
+        if (data.status === 'ok') {
+            getUserInfo()
+        } else {
+            alert(data.error)
+        }
+    }
+
+    const toggleBestPictures = async () => {
+        const req = await fetch(API_BASE + '/settings/best-pictures', {
+            method: 'POST', 
+            headers: {
+                'x-access-token': localStorage.getItem('token')
+            }
+        })
+
+        const data = await req.json()
+        if (data.status === 'ok') {
+            getUserInfo()
+        } else {
+            alert(data.error)
+        }
+    }
 
     return (
         <div className="navbar-container">
@@ -71,24 +153,40 @@ export default function Navbar(props) {
         
            { settings ? 
 
-                <div className="settings-container">
-                    <a id="settings-exit" href="#" onClick={() => setSettings(!settings)}>
-                        <FaWindowClose />
+            <div className="settings-container"> 
+            <a id="settings-exit" href="#" onClick={() => setSettings(!settings)}>
+                <FaWindowClose />
+            </a>
+                <h1>Settings</h1>
+                <div className="toggles">
+                    <h3>Super Hero Movies Only</h3>
+                    <a className="switches" href="#" onClick={() => {toggleSuperHero()}}>
+                        { superHero ? <FaToggleOn /> : <FaToggleOff />}
                     </a>
-                    <h1>Settings</h1>
-                    <div className="switches">
-                    {switches.map(toggle => (
-                        <div className="toggles" key={toggle._id}>
-                            <h3>{toggle.text} Only</h3>
-                            <a id="toggle-off" className="toggle-super" href="#" onClick={() => {toggleSwitch(toggle._id); props.updateStartingMovie(toggle.text)}}>
-                                { toggle.toggled ? <FaToggleOn /> : <FaToggleOff /> }
-                            </a>
-                        </div>
-                    ))}
-                    </div>
                 </div>
+                <div className="toggles">
+                    <h3>Scifi Movies Only</h3>
+                    <a className="switches" href="#" onClick={() => {toggleScifi()}}>
+                        {scifi ? <FaToggleOn /> : <FaToggleOff />}
+                    </a>
+                </div>
+                <div className="toggles">
+                    <h3>Comedies Only</h3>
+                    <a className="switches" href="#" onClick={() => {toggleComedies()}}>
+                        {comedies ? <FaToggleOn /> : <FaToggleOff />}
+                    </a>
+                </div>
+                <div className="toggles">
+                    <h3>Best Pictures (Oscars) Only</h3>
+                    <a className="switches" href="#" onClick={() => {toggleBestPictures()}}>
+                        {bestPictures ? <FaToggleOn /> : <FaToggleOff />}
+                    </a>
+                </div>
+            </div>
+
             : null
            } 
+           
 
         </div>
     )

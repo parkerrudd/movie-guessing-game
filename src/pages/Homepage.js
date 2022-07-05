@@ -213,10 +213,10 @@ function Homepage() {
 
   useEffect(() => {
     if (correctID === guessMovieID && guessCount > 0) {
-    setWinPage(true);
-
-    addWin()
     addGame()
+    addWin()
+
+    setWinPage(true);
   }
   }, [guessMovieID])
 

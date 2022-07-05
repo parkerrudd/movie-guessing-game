@@ -42,7 +42,7 @@ nav li {
     border-radius: 10px;
     box-shadow: 5px 5px 15px 1px rgba(0,0,0,0.7);
     color: #2E282A;
-
+    animation: modalFadeIn .3s ease-in;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -82,7 +82,7 @@ nav li {
     border-radius: 10px;
     box-shadow: 5px 5px 15px 1px rgba(0,0,0,0.7);
     color: #2E282A;
-
+    animation: modalFadeIn .3s ease-in;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -98,6 +98,8 @@ nav li {
     align-items: center;
     flex-direction: column;
     gap: 1em;
+    color: black;
+    font-size: 1.5em;
 }
 
 .toggles {
@@ -442,7 +444,7 @@ td {
     align-items: center;
     box-shadow: 5px 5px 15px 1px rgba(0,0,0,0.7);
     color: #2E282A;
-    animation: modalFadeIn .7s ease-in;
+    animation: modalFadeIn .3s ease-in;
 }
 
 .numbers {

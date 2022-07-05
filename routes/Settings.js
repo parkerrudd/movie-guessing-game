@@ -1,37 +1,100 @@
 const express = require('express')
 const Settings = require('../models/Settings')
+const jwt = require('jsonwebtoken')
 const router = express.Router()
+const User = require('../models/User')
 
-router.get('/', async (req, res) => {
-    const settings = await Settings.find()
+router.put('/superHero/:id', async (req, res) => {
+    const user = await User.findById(req.params.id)
 
-    res.json(settings)
+    user.superHero = !user.superHero
+
+    user.save()
+
+    res.json(user)
 })
 
-router.post('/new', (req, res) => {
-    const setting = new Settings({
-        text: req.body.text
-    })
+router.post('/superHero', async (req, res) => {
+    const token = req.headers['x-access-token']
 
-    setting.save()
+    try {
+        const decoded = jwt.verify(token, 'secret1427')
+        const email = decoded.email
+        const user = await User.findOne({ email: email })
+        await User.updateOne(
+            { email: email }, 
+            { $set: { superHero: !user.superHero }}
+            )
 
-    res.json(setting)
+        user.save()
+
+        return res.json({ status: 'ok', superHero: user.superHero })
+    } catch (error) {
+        console.log(error)
+        res.json({ status: 'error', error: 'invalid token' })
+    }
 })
 
-router.put('/toggle/:id', async (req, res) => {
-    const toggle = await Settings.findById(req.params.id)
+router.post('/scifi', async (req, res) => {
+    const token = req.headers['x-access-token']
 
-    toggle.toggled = !toggle.toggled
+    try {
+        const decoded = jwt.verify(token, 'secret1427')
+        const email = decoded.email
+        const user = await User.findOne({ email: email })
+        await User.updateOne(
+            { email: email }, 
+            { $set: { scifi: !user.scifi }}
+            )
 
-    toggle.save()
+        user.save()
 
-    res.json(toggle)
+        return res.json({ status: 'ok', scifi: user.scifi })
+    } catch (error) {
+        console.log(error)
+        res.json({ status: 'error', error: 'invalid token' })
+    }
 })
 
-router.delete('/delete/:id', async (req, res) => {
-    const result = await Settings.findByIdAndDelete(req.params.id)
+router.post('/comedies', async (req, res) => {
+    const token = req.headers['x-access-token']
 
-    res.json(result)
+    try {
+        const decoded = jwt.verify(token, 'secret1427')
+        const email = decoded.email
+        const user = await User.findOne({ email: email })
+        await User.updateOne(
+            { email: email }, 
+            { $set: { comedies: !user.comedies }}
+            )
+
+        user.save()
+
+        return res.json({ status: 'ok', comedies: user.comedies })
+    } catch (error) {
+        console.log(error)
+        res.json({ status: 'error', error: 'invalid token' })
+    }
+})
+
+router.post('/best-pictures', async (req, res) => {
+    const token = req.headers['x-access-token']
+
+    try {
+        const decoded = jwt.decode(token, 'secret1427')
+        const email = decoded.email
+        const user = await User.findOne({ email: email })
+
+        await User.updateOne(
+            { email: email }, 
+            { $set: { bestPictures: !user.bestPictures }}
+        )
+
+
+        res.json({ status: 'ok', bestPictures: user.bestPictures })
+    } catch (error) {
+        res.json({ status: 'error', error: 'invalid token'} )
+    }
 })
 
 module.exports = router
