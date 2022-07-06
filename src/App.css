@@ -445,6 +445,7 @@ td {
     box-shadow: 5px 5px 15px 1px rgba(0,0,0,0.7);
     color: #2E282A;
     animation: modalFadeIn .3s ease-in;
+    z-index: 1;
 }
 
 .numbers {

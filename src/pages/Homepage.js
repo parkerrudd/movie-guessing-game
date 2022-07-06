@@ -16,27 +16,6 @@ const API_BASE = "http://localhost:3004"
 function Homepage() {
   const [current, setCurrent] = useState();
   const [guessCount, setGuessCount] = useState(0); 
-  const [beginningMovie, setBeginningMovie] = useState([])
-  useEffect(() => {
-    GetBeginningMovie()
-
-  }, [])
-
-  const GetBeginningMovie = () => {
-    fetch(API_BASE + "/settings")
-    .then(res => res.json())
-    .then(data => setBeginningMovie(data))
-    .catch(err => console.error('Error:', err))
-  }
-
-  useEffect(() => {
-    beginningMovie.map(x => {
-      if (x.toggled === true) {
-        setStartingMovie(x.text)
-      }
-    })
-  }, [beginningMovie]) 
-
   const [correctTitle, setCorrectTitle] = useState(""); 
   const [correctID, setCorrectID] = useState(""); 
 
@@ -60,7 +39,6 @@ function Homepage() {
   if (startingMovie === 'Best Pictures (Oscars)') {
     firstMovie = BestPicture.movies
   }
-
   if (startingMovie === 'Comedies') {
     firstMovie = Comedies.movies
   }
@@ -87,7 +65,6 @@ function Homepage() {
 
     const [movie, setMovie] = useState(''); 
     const [guessMovieID, setGuessMovieID] = useState(''); 
-    const [guess, setGuess] = useState(); 
     const [searchField, setSearchField] = useState(false); 
  
     //GET MOVIE GUESS AND SET ID
@@ -105,11 +82,11 @@ function Homepage() {
       .then((response) => {
         setGuessMovieID(response.data.results[0].id);
         setGuessCount(guessCount + 1)
+        setMovie('')
       })
       .catch((error) => {
         console.log(error);
       }); 
-      setMovie('')
     }; 
 
     const [correctYear, setCorrectYear] = useState(""); 
@@ -247,10 +224,9 @@ function Homepage() {
         
             <div>
                 <div className="search-container">
-                    <input id="search-input" onChange={(e) => setMovie(e.target.value)} className="actors-searchbar" autoComplete="list" type="text" list="search-suggestions" placeholder="Search Movies..." required/>
-                    <button onClick={() => {movieQuery(); setSearchField(true)}} className="actor-search-btn">Guess</button>
+                    <input value={movie} id="search-input" onChange={(e) => setMovie(e.target.value)} className="actors-searchbar" autoComplete="list" type="text" list="search-suggestions" placeholder="Search Movies..." required/>
+                    <button onClick={() => {movieQuery(); setSearchField(true);}} className="actor-search-btn">Guess</button>
                 </div>
-
             </div>
       </div>   
       { winPage ? <WinPage updatePlayAgain={playAgain => setPlayAgain(playAgain)} time={clock} guessCount={guessCount} correctTitle={correctTitle} moviePoster={moviePoster}/> : null }

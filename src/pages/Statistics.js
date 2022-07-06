@@ -20,7 +20,6 @@ function Statistics(props) {
         })
 
         const data = await req.json()
-        console.log(data)
         if (data.status === 'ok') {
             setGamesPlayed(data.gamesPlayed)
             setGamesWon(data.gamesWon)
