@@ -327,6 +327,10 @@ nav li {
     animation: fadeIn 1.3s;
 }
 
+#results {
+    max-width: 100vw;
+}
+
 th, td {
     width: 20vw;
     text-align: center;
@@ -334,7 +338,6 @@ th, td {
     border-right: 1.5px solid #2E282A;
     font-size: 1em;
     padding: 1.5vw;
-    /* z-index: 3; */
 }
 
 td {
@@ -388,7 +391,6 @@ td {
         font-size: .6em;
     }
 }
-
 
 #results {
     max-width: 80vw;
@@ -513,5 +515,21 @@ td {
 
     .stats-container {
         width: 70vw;
+    }
+}
+
+@media screen and (max-width: 350px) {
+    .instructions-container {
+        font-size: .7em;
+    }
+
+    .settings-container {
+        font-size: .7em;
+        height: 30vh;
+    }
+
+    .stats-container {
+        font-size: .7em;
+        height: 30vh;
     }
 }
