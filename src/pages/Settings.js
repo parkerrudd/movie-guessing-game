@@ -7,6 +7,7 @@ export default function Settings(props) {
 
     const [superToggle, setSuperToggle] = useState(false)
 
+
     return (
         // <div className="settings-container">
         //     <a id="settings-exit" href="#" onClick={() => {props.toggleSettings(props.settings)}}>

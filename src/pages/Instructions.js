@@ -1,5 +1,5 @@
 import React from "react";
-import './App.css'; 
+import '../App.css'; 
 import { FaWindowClose } from "react-icons/fa";
 
 export default function Instructions(props) {

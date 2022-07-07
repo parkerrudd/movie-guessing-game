@@ -12,3 +12,11 @@ Content-Type: application/json
 ###
 
 DELETE http://localhost:3004/settings/delete/62bd1ee90d86a778c1feafc3
+
+### 
+
+GET http://localhost:3004/register
+
+###
+
+GET http://localhost:3004/win

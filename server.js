@@ -1,12 +1,28 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
+
 const PORT = 3004
+
+const settingsRoute = require('./routes/Settings')
+const registerRoute = require('./routes/Register')
+const loginRoute = require('./routes/Login')
+const gameRoute = require('./routes/Game')
+const winRoute = require('./routes/Win')
+const statisticsRoute = require('./routes/Statistics')
 
 const app = express()
 
-app.use(express.json())
 app.use(cors())
+app.use(express.json())
+
+app.use('/statistics', statisticsRoute)
+app.use('/win', winRoute)
+app.use('/game', gameRoute)
+app.use('/register', registerRoute)
+app.use('/settings', settingsRoute)
+app.use('/login', loginRoute)
+
 
 mongoose.connect("mongodb://127.0.0.1:27017/movie-game", {
     useNewUrlParser: true, 
@@ -16,38 +32,5 @@ mongoose.connect("mongodb://127.0.0.1:27017/movie-game", {
     .then((console.log('Connected to database')))
     .catch(console.error)
 
-const Settings = require('./models/Settings')
-
-app.get('/settings', async (req, res) => {
-    const settings = await Settings.find()
-
-    res.json(settings)
-})
-
-app.post('/settings/new', (req, res) => {
-    const setting = new Settings({
-        text: req.body.text
-    })
-
-    setting.save()
-
-    res.json(setting)
-})
-
-app.put('/settings/toggle/:id', async (req, res) => {
-    const toggle = await Settings.findById(req.params.id)
-
-    toggle.toggled = !toggle.toggled
-
-    toggle.save()
-
-    res.json(toggle)
-})
-
-app.delete('/settings/delete/:id', async (req, res) => {
-    const result = await Settings.findByIdAndDelete(req.params.id)
-
-    res.json(result)
-})
 
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
