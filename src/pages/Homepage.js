@@ -24,7 +24,6 @@ function Homepage() {
   let day = 0; 
   var today = new Date();
   var clock = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  const [time, setTime] = useState(""); 
 
   localStorage.setItem('startingMovie', startingMovie)
 

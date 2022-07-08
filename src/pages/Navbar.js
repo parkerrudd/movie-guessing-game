@@ -159,7 +159,7 @@ export default function Navbar(props) {
             </a>
                 <h1>Settings</h1>
                 <div className="toggles">
-                    <h3>Super Hero Movies Only</h3>
+                    <h3>Superhero Movies Only</h3>
                     <a className="switches" href="#" onClick={() => {toggleSuperHero()}}>
                         { superHero ? <FaToggleOn /> : <FaToggleOff />}
                     </a>
