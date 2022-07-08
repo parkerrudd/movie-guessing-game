@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import '../App.css'; 
 import Letters from "./letters";
 import GuessTable from "./GuessTable";
