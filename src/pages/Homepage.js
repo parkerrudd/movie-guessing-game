@@ -13,7 +13,6 @@ import { Jwt } from "jsonwebtoken";
 const API_BASE = "http://localhost:3004"
 
 function Homepage() {
-  const [current, setCurrent] = useState();
   const [guessCount, setGuessCount] = useState(0); 
   const [correctTitle, setCorrectTitle] = useState(""); 
   const [correctID, setCorrectID] = useState(""); 
@@ -53,7 +52,6 @@ function Homepage() {
     
     axios(config)
     .then(function (response) {
-      setCurrent(response.data.results[0].title);
       setCorrectTitle(response.data.results[0].title)
       setCorrectID(response.data.results[0].id)
     })
