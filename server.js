@@ -33,4 +33,8 @@ mongoose.connect("mongodb://127.0.0.1:27017/movie-game", {
     .catch(console.error)
 
 
+app.get('*', () => {
+
+})
+
 app.listen(PORT, () => console.log(`Server started on port ${PORT}`))
