@@ -8,7 +8,7 @@ import SuperHeroMovies from '../json/SuperHeroMovies.json';
 import SciFi from '../json/SciFi.json'; 
 import BestPicture from '../json/BestPictures.json'; 
 import Comedies from '../json/Comedies.json'; 
-import { Jwt } from "jsonwebtoken";
+// import { Jwt } from "jsonwebtoken";
 
 const API_BASE = "http://localhost:3004"
 
@@ -191,7 +191,7 @@ function Homepage() {
 
     setWinPage(true);
   }
-  }, [guessMovieID])
+  }, [guessMovieID, correctID, guessCount])
 
   useEffect(() => {
     if (playAgain === true) {

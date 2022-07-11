@@ -7,7 +7,6 @@ import RowFive from "./RowFive";
 import RowSix from "./RowSix";
 import RowSeven from "./RowSeven";
 import RowEight from "./RowEight";
-import WinPage from "./WinPage";
 
 function GuessTable(props) {
     //FIRST GUESS 
@@ -132,7 +131,7 @@ function GuessTable(props) {
         // console.log(error);
         });
 
-    }, [props.movieID])
+    }, [props.movieID, props.guessCount])
 
     //GET CREDITS
     useEffect(() => {
@@ -263,7 +262,7 @@ function GuessTable(props) {
         // console.log(error);
         });
 
-    }, [props.movieID])
+    }, [props.movieID, props.guessCount])
 
     return (
         <div className="table-section">
