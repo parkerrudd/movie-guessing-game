@@ -4,4 +4,4 @@ This is a movie guessing game that gives you 8 guesses figure out the randomly g
 
 ## Tools
 
-This uses the TMDb API
+This uses the TMDb API. I used React for the frontend and Node.js for the backend. 
