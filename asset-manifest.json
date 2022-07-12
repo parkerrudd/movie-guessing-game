@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/movie-guessing-game/static/css/main.e410e3fc.css",
-    "main.js": "/movie-guessing-game/static/js/main.f9823bcc.js",
+    "main.js": "/movie-guessing-game/static/js/main.7fdd0b09.js",
     "index.html": "/movie-guessing-game/index.html",
     "main.e410e3fc.css.map": "/movie-guessing-game/static/css/main.e410e3fc.css.map",
-    "main.f9823bcc.js.map": "/movie-guessing-game/static/js/main.f9823bcc.js.map"
+    "main.7fdd0b09.js.map": "/movie-guessing-game/static/js/main.7fdd0b09.js.map"
   },
   "entrypoints": [
     "static/css/main.e410e3fc.css",
-    "static/js/main.f9823bcc.js"
+    "static/js/main.7fdd0b09.js"
   ]
 }
