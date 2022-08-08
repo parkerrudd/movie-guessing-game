@@ -79,7 +79,7 @@ function GuessTable(props) {
 
         let config = {
         method: 'get',
-        url: `https://api.themoviedb.org/3/movie/${props.movieID}?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`,
+        url: `https://api.themoviedb.org/3/movie/${props.movieID}?api_key=dc60bf976a71bca2cb82fc0c39372ba7&language=en-US`,
         params: {}
         };
 
@@ -128,7 +128,7 @@ function GuessTable(props) {
             }
         })
         .catch((error) => {
-        // console.log(error);
+        console.log(error);
         });
 
     }, [props.movieID, props.guessCount])
@@ -139,7 +139,7 @@ function GuessTable(props) {
 
         let config = {
         method: 'get',
-        url: `https://api.themoviedb.org/3/movie/${props.movieID}/credits?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`,
+        url: `https://api.themoviedb.org/3/movie/${props.movieID}/credits?api_key=dc60bf976a71bca2cb82fc0c39372ba7&language=en-US`,
         };
 
         axios(config)

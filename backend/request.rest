@@ -19,4 +19,4 @@ GET http://localhost:3004/register
 
 ###
 
-GET http://localhost:3004/win
+GET mongodb+srv://parkerrudd:PK14tj27@cluster0.tparehc.mongodb.net/movie-guessing-game-DB

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import Letters from "./letters";
 import styles from '../styles/styles.css'
 
-const API_BASE = "http://localhost:3004"
+const API_BASE = process.env.PORT
 
 function Login() {
     const [email, setEmail] = useState('')
@@ -13,7 +13,7 @@ function Login() {
     const loginUser = async (event) => {
         event.preventDefault()
 
-        const response = await fetch(API_BASE + '/login', {
+        const response = await fetch('https://nameless-ocean-24440.herokuapp.com/api/login', {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json'
@@ -44,7 +44,7 @@ function Login() {
                 <input className="login-inputs" value={password} type="password" onChange={(e) => setPassword(e.target.value)} placeholder="Password"/>
                 <input className="login-btn" type="submit" value="Login" />
 
-                <div>Don't have an account yet? <a href="/register">Sign Up!</a></div>
+                <div>Don't have an account yet? <a id="sign-up-btn" onClick={() => navigate('/register')}>Sign Up!</a></div>
             </form>
         </div>
     )

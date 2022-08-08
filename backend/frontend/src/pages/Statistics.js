@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 import { useNavigate } from "react-router-dom";
 import { FaWindowClose } from "react-icons/fa";
 
-const API_BASE = "http://localhost:3004"
+const API_BASE = process.env.PORT
 
 function Statistics(props) {
 
@@ -13,7 +13,7 @@ function Statistics(props) {
     const navigate = useNavigate()
 
     const populateStats = async () => {
-        const req = await fetch(API_BASE + '/statistics', {
+        const req = await fetch('https://nameless-ocean-24440.herokuapp.com/statistics', {
             headers: {
                 'x-access-token': localStorage.getItem('token')
             }
@@ -61,7 +61,7 @@ function Statistics(props) {
                     <h3>Played</h3>
                 </div>
                 <div className="percentage">
-                    <h3>{percentage}</h3>
+                    <h3>{percentage ? percentage : 0}</h3>
                     <h3>Win %</h3>
                 </div>
             </div>

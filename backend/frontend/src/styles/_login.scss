@@ -48,6 +48,12 @@
     }
 }
 
+#sign-up-btn {
+    text-decoration: underline;
+    cursor: pointer;
+    color: blue;
+}
+
 
 @media screen and (max-width: 800px) {
     .login-inputs {

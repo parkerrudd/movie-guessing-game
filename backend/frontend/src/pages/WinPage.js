@@ -2,7 +2,7 @@ import {useState, useEffect} from "react";
 import jwt from "jsonwebtoken";
 import { useNavigate } from "react-router-dom";
 
-const API_BASE = "http://localhost:3004"
+const API_BASE = process.env.PORT
 
 function WinPage(props) {
     const [gamesPlayed, setGamesPlayed] = useState()
@@ -13,7 +13,7 @@ function WinPage(props) {
     const posterUrl = `https://image.tmdb.org/t/p/original/${props.moviePoster}`; 
 
     const populateStats = async () => {
-        const req = await fetch(API_BASE + '/statistics', {
+        const req = await fetch('https://nameless-ocean-24440.herokuapp.com/statistics', {
             headers: {
                 'x-access-token': localStorage.getItem('token')
             }
@@ -66,7 +66,7 @@ function WinPage(props) {
                         <h3>Played</h3>
                     </div>
                     <div className="percentage">
-                        <h3>{percentage}</h3>
+                        <h3>{percentage ? percentage : 0}</h3>
                         <h3>Win %</h3>
                     </div>
                 </div>

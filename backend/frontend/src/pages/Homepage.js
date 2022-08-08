@@ -9,7 +9,7 @@ import SciFi from '../json/SciFi.json';
 import BestPicture from '../json/BestPictures.json'; 
 import Comedies from '../json/Comedies.json'; 
 
-const API_BASE = "http://localhost:3004"
+const API_BASE = process.env.PORT
 
 function Homepage() {
   const [guessCount, setGuessCount] = useState(0); 
@@ -44,7 +44,7 @@ function Homepage() {
     var axios = require('axios');
     var config = {
       method: 'get',
-      url: `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&include_adult=false`,
+      url: `https://api.themoviedb.org/3/search/movie?api_key=dc60bf976a71bca2cb82fc0c39372ba7&language=en-US&page=1&include_adult=false`,
       params: {query: firstMovie[day]}
     };
     
@@ -56,6 +56,8 @@ function Homepage() {
     .catch(function (error) {
       console.log(error);
     });
+
+    console.clear()
   }, [startingMovie]); 
 
     const [movie, setMovie] = useState(''); 
@@ -68,7 +70,7 @@ function Homepage() {
 
       let config = {
         method: 'get',
-        url: `https://api.themoviedb.org/3/search/movie?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US&page=1&include_adult=false`,
+        url: `https://api.themoviedb.org/3/search/movie?api_key=dc60bf976a71bca2cb82fc0c39372ba7&language=en-US&page=1&include_adult=false`,
         params: {query: movie}, 
         
       };
@@ -82,6 +84,8 @@ function Homepage() {
       .catch((error) => {
         console.log(error);
       }); 
+
+      console.clear()
     }; 
 
     const [correctYear, setCorrectYear] = useState(""); 
@@ -96,7 +100,7 @@ function Homepage() {
 
       let config = {
       method: 'get',
-      url: `https://api.themoviedb.org/3/movie/${correctID}?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`,
+      url: `https://api.themoviedb.org/3/movie/${correctID}?api_key=dc60bf976a71bca2cb82fc0c39372ba7&language=en-US`,
       params: {}
       };
 
@@ -121,7 +125,7 @@ function Homepage() {
 
       let config = {
       method: 'get',
-      url: `https://api.themoviedb.org/3/movie/${correctID}/credits?api_key=${process.env.REACT_APP_TMDB_KEY}&language=en-US`,
+      url: `https://api.themoviedb.org/3/movie/${correctID}/credits?api_key=dc60bf976a71bca2cb82fc0c39372ba7&language=en-US`,
       };
 
       axios(config)
@@ -164,7 +168,7 @@ function Homepage() {
   }, [])
 
   const addWin = async () => {
-    const req = await fetch(API_BASE + '/win', {
+    const req = await fetch('https://nameless-ocean-24440.herokuapp.com/win', {
         method: 'POST', 
         headers: {
             'Content-Type': 'application/json', 
@@ -174,7 +178,7 @@ function Homepage() {
   }
 
   const addGame = async () => {
-    const req = await fetch(API_BASE + '/game', {
+    const req = await fetch('https://nameless-ocean-24440.herokuapp.com/game', {
       method: 'POST', 
       headers: {
           'Content-Type': 'application/json', 
