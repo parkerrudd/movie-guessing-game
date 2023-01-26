@@ -3,8 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import Letters from "./letters";
 import styles from '../styles/styles.css'
 
-const API_BASE = process.env.PORT
-
 function Login() {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
@@ -13,7 +11,7 @@ function Login() {
     const loginUser = async (event) => {
         event.preventDefault()
 
-        const response = await fetch('https://nameless-ocean-24440.herokuapp.com/api/login', {
+        const response = await fetch('http://localhost:3004/api/login', {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json'

@@ -3,8 +3,6 @@ import { useNavigate } from "react-router-dom";
 import styles from '../styles/styles.css'
 import Letters from "./letters";
 
-const API_BASE = process.env.PORT
-
 function Register() {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
@@ -14,7 +12,7 @@ function Register() {
     const registerUser = async (event) => {
         event.preventDefault()
 
-        const response = await fetch("https://nameless-ocean-24440.herokuapp.com/api/register", {
+        const response = await fetch('http://localhost:3004/api/register', {
             method: 'POST', 
             headers: {
                 'Content-Type': 'application/json'

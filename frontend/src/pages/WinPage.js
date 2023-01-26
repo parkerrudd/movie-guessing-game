@@ -13,7 +13,7 @@ function WinPage(props) {
     const posterUrl = `https://image.tmdb.org/t/p/original/${props.moviePoster}`; 
 
     const populateStats = async () => {
-        const req = await fetch('https://nameless-ocean-24440.herokuapp.com/statistics', {
+        const req = await fetch('http://localhost:3004/statistics', {
             headers: {
                 'x-access-token': localStorage.getItem('token')
             }

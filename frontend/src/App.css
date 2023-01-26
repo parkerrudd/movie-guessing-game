@@ -112,7 +112,7 @@ nav li {
 @media screen and (max-width: 1000px) {
     .instructions-container {
         width: 50vw;
-        height: 50vh;
+        height: 65vh;
     }
 
     .settings-container {

@@ -13,7 +13,7 @@ function Statistics(props) {
     const navigate = useNavigate()
 
     const populateStats = async () => {
-        const req = await fetch('https://nameless-ocean-24440.herokuapp.com/statistics', {
+        const req = await fetch('http://localhost:3004/statistics', {
             headers: {
                 'x-access-token': localStorage.getItem('token')
             }

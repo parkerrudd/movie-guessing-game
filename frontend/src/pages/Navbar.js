@@ -23,7 +23,7 @@ export default function Navbar(props) {
     }, [])
 
     const getUserInfo = async () => {
-        const req = await fetch('https://nameless-ocean-24440.herokuapp.com/statistics', {
+        const req = await fetch('http://localhost:3004/statistics', {
             headers: {
                 'x-access-token': localStorage.getItem('token')
             }
@@ -61,7 +61,7 @@ export default function Navbar(props) {
     }
 
     const toggleSuperHero = async () => {
-        const req = await fetch('https://nameless-ocean-24440.herokuapp.com/settings/superHero', {
+        const req = await fetch('http://localhost:3004/settings/superHero', {
             method: 'POST', 
             headers: {
                 'x-access-token': localStorage.getItem('token')
@@ -78,7 +78,7 @@ export default function Navbar(props) {
     }
 
     const toggleScifi = async () => {
-        const req = await fetch('https://nameless-ocean-24440.herokuapp.com/settings/scifi', {
+        const req = await fetch('http://localhost:3004/settings/scifi', {
             method: 'POST', 
             headers: {
                 'x-access-token': localStorage.getItem('token')
@@ -94,7 +94,7 @@ export default function Navbar(props) {
     }
 
     const toggleComedies = async () => {
-        const req = await fetch('https://nameless-ocean-24440.herokuapp.com/settings/comedies', {
+        const req = await fetch('http://localhost:3004/settings/comedies', {
             method: 'POST', 
             headers: {
                 'x-access-token': localStorage.getItem('token')
@@ -110,7 +110,7 @@ export default function Navbar(props) {
     }
 
     const toggleBestPictures = async () => {
-        const req = await fetch('https://nameless-ocean-24440.herokuapp.com/settings/best-pictures', {
+        const req = await fetch('http://localhost:3004/settings/best-pictures', {
             method: 'POST', 
             headers: {
                 'x-access-token': localStorage.getItem('token')
